@@ -13,7 +13,9 @@ brain and tool set. Two working apps on one core.
 
 ## Live demo
 
-**Try it in your browser (no install): _deploying — link coming here_**
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://selfheal-mlops.streamlit.app)
+
+**Try it live (no install): https://selfheal-mlops.streamlit.app**
 
 Pick a drift level and watch the model's accuracy crash and then recover as the controller heals it, live.
 
