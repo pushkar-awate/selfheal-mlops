@@ -21,6 +21,10 @@ brain and tool set. Two working apps on one core.
 
 **Try it live (no install): https://selfheal-mlops.streamlit.app**
 
+![Self-healing pipeline demo](assets/selfheal-demo.gif)
+
+*One click on real ELEC2 data: the model left alone (lower line) decays as the market drifts, while the self-healed model (upper line) stays accurate - 2 better models shipped, 2 bad retrains caught before shipping.*
+
 Stream the real electricity data (or the synthetic stress test) and watch the
 controller detect drift, retrain, promote better models, and block worse ones.
 
@@ -81,6 +85,17 @@ distributed via scikit-multiflow.
   Evidently, a Kubernetes CronJob, and Terraform.
 - **The control logic is production-real** - drift detection, retrain, held-out
   evaluation, guardrail-gated promotion, rollback, and an audit ledger.
+
+## Future work
+
+- **Live data source.** A "live" mode could fetch a fresh window from a public
+  API (for example Coinbase crypto candles) on each run instead of replaying
+  ELEC2. ELEC2 stays the default on purpose: a live feed may not drift on the
+  day someone clicks, and the demo's value is that it reliably shows the full
+  detect -> retrain -> promote/block story every time. The data loader is
+  already isolated, so adding a source is a drop-in.
+- **Bigger labeled evaluation** and wiring the decision ledger into a live
+  monitoring dashboard.
 
 ## Project layout
 
