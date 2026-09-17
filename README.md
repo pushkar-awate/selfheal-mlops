@@ -1,5 +1,7 @@
 # selfheal-mlops
 
+[![tests](https://github.com/pushkar-awate/selfheal-mlops/actions/workflows/ci.yml/badge.svg)](https://github.com/pushkar-awate/selfheal-mlops/actions/workflows/ci.yml)
+
 An autonomous controller that keeps a machine-learning model healthy under data
 drift. On each window of data it measures drift and accuracy, and when the model
 degrades it retrains, evaluates a candidate on held-out data, and **promotes it
