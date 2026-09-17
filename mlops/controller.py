@@ -45,13 +45,17 @@ class ModelRegistry:
 class ControllerBrain(Brain):
     """Deterministic control policy that branches on observed signals."""
 
+    def __init__(self, drift_threshold=DRIFT_THRESHOLD, acc_floor=ACC_FLOOR):
+        self.drift_threshold = drift_threshold
+        self.acc_floor = acc_floor
+
     def decide(self, observation, tool_specs):
         done = observation.get("completed", [])
         sig = observation.get("signals", {})
         if "assess_health" not in done:
             return Decision("assess_health", {}, "check drift and live accuracy")
         drift, acc = sig.get("drift", 0.0), sig.get("acc", 1.0)
-        unhealthy = drift > DRIFT_THRESHOLD or acc < ACC_FLOOR
+        unhealthy = drift > self.drift_threshold or acc < self.acc_floor
         if unhealthy:
             if "retrain" not in done:
                 return Decision("retrain", {},

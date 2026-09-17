@@ -19,6 +19,8 @@ class LogisticRegression:
         return self._sigmoid(self.b + sum(w * xi for w, xi in zip(self.w, x)))
 
     def fit(self, X, y):
+        if X and len(self.w) != len(X[0]):
+            self.w = [0.0] * len(X[0])
         for _ in range(self.epochs):
             for xi, yi in zip(X, y):
                 err = self._p(xi) - yi

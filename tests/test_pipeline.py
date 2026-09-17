@@ -67,8 +67,22 @@ def test_healthy_batch_only_monitors():
     print("PASS: healthy batch only monitors (no needless retrain)")
 
 
+
+def test_real_elec2_pipeline():
+    from mlops.pipeline import build_real_steps, run_pipeline
+    init, steps, thr = build_real_steps()
+    assert len(steps) >= 5, "expected several streamed windows of real data"
+    res = run_pipeline(init, steps, thr)
+    assert res["promotions"] >= 1, "should heal at least once on real drift"
+    assert res["final_version"] >= 2
+    assert len(res["rows"]) == len(steps)
+    print("PASS: real ELEC2 pipeline (promotions=%d, blocked=%d, worst=%.2f)"
+          % (res["promotions"], res["blocked"], res["worst"]))
+
+
 if __name__ == "__main__":
     test_heals_after_drift()
     test_guardrail_blocks_worse_candidate()
     test_healthy_batch_only_monitors()
+    test_real_elec2_pipeline()
     print("\nAll tests passed.")
