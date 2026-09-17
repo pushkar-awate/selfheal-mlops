@@ -1,1 +1,3 @@
-# No third-party dependencies. Pure Python standard library.
+# The agent + pipeline core is pure standard library.
+# The web UI (streamlit_app.py) needs Streamlit; that is all the deploy installs.
+streamlit>=1.30

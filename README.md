@@ -10,7 +10,14 @@ It is built on the same `agentcore` runtime as
 perceive -> reason -> guardrail -> act -> verify -> remember loop, a different
 brain and tool set. Two working apps on one core.
 
-Zero dependencies, pure Python. Clone and run:
+
+## Live demo
+
+**Try it in your browser (no install): _deploying — link coming here_**
+
+Pick a drift level and watch the model's accuracy crash and then recover as the controller heals it, live.
+
+The agent + pipeline core is pure standard library (the only dependency, Streamlit, is just for the web UI). Clone and run:
 
 ```
 $ python -m mlops.run
